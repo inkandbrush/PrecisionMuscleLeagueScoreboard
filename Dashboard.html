@@ -10,19 +10,35 @@
     th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
   </style>
 </head>
-<body>
-  <h2>Precision Muscle League Scoreboard</h2>
+<body style="background-color: red" >
+<header style="display: flex; justify-content: space-between; align-items: center; background-color: white; padding: 10px 20px; margin-bottom: 30px;">
+  
+		<img src="images/pml.png" alt="Precision Muscle League" style="height: 60px;">
+		<img src="images/leaderboard.png" alt="Leaderboard" style="height: 60px;">
+		<img src="images/logo.png" alt="logo" style="height: 60px;">
+  </header>
+  
 
-  <label for="regionFilter">Filter by Region:</label>
-  <select id="regionFilter">
+<label for="regionFilter">Filter by Region:</label>  
+
+<select id="regionFilter">
     <option value="">-- Region --</option>
      <option value="Chennai">Chennai</option>
       <option value="Delhi">Delhi</option>
       <option value="Mumbai">Mumbai</option>
       <option value="Banglore">Banglore</option>
   </select>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	
+	
+	
+<button onclick="window.location.href='Entryform.html'"  style="margin-bottom: 20px; padding: 8px 16px; background-color: white; border: 2px solid red; color: black; border-radius: 5px; cursor: pointer;">
+  ⬅ Back to Form
+</button>
 
-  <table id="scoreboard">
+  <table id="scoreboard" style="background-color: white">
     <thead>
       <tr>
         <th>Sr. No</th>
@@ -36,7 +52,7 @@
     <tbody></tbody>
   </table>
 
-  <script>
+<script>
     const TEN_DAYS_MS = 10 * 24 * 60 * 60 * 1000;
     const now = Date.now();
 

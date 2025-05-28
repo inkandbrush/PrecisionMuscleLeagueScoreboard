@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit EMG Reading</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    form { max-width: 500px; margin: auto; }
+    input, select, button { margin: 10px 0; width: 100%; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Precision Muscle League Scoreboard</h2>
+  <form id="emgForm">
+    <input type="text" id="drName" placeholder="Dr. Name" required />
+    <input type="text" id="specialty" placeholder="Specialty" required />
+     <input type="text" id="ssm" placeholder="SSM Name" required />
+    <input type="number" id="emgReading" placeholder="EMG Reading" required />
+    <select id="region" required>
+      <option value="">Region</option>
+      <option value="Chennai">Chennai</option>
+      <option value="Delhi">Delhi</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Banglore">Banglore</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+
+  <!--<script>
+    document.getElementById("emgForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const entry = {
+        drName: document.getElementById("drName").value,
+        specialty: document.getElementById("specialty").value,
+        ct: document.getElementById("ct").value,
+        emgReading: parseFloat(document.getElementById("emgReading").value),
+        emgRegion: document.getElementById("emgRegion").value
+      };
+
+      const entries = JSON.parse(localStorage.getItem("emgEntries")) || [];
+      entries.push(entry);
+      localStorage.setItem("emgEntries", JSON.stringify(entries));
+
+      window.location.href = "dashboard.html";
+    });
+  </script>-->
+	<script>
+  document.getElementById("emgForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const entry = {
+      drName: document.getElementById("drName").value,
+      specialty: document.getElementById("specialty").value,
+      ssm: document.getElementById("ssm").value,
+      emgReading: parseFloat(document.getElementById("emgReading").value),
+      region: document.getElementById("region").value,
+      timestamp: Date.now() // current time in milliseconds
+    };
+
+    const entries = JSON.parse(localStorage.getItem("emgEntries")) || [];
+    entries.push(entry);
+    localStorage.setItem("emgEntries", JSON.stringify(entries));
+
+    window.location.href = "Dashboard.html";
+  });
+</script>
+
+</body>
+</html>

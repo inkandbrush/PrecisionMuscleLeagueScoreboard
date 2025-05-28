@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Precision Muscle League Scoreboard<</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    select { margin-bottom: 20px; padding: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+  </style>
+</head>
+<body>
+  <h2>Precision Muscle League Scoreboard</h2>
+
+  <label for="regionFilter">Filter by Region:</label>
+  <select id="regionFilter">
+    <option value="">-- Region --</option>
+     <option value="Chennai">Chennai</option>
+      <option value="Delhi">Delhi</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Banglore">Banglore</option>
+  </select>
+
+  <table id="scoreboard">
+    <thead>
+      <tr>
+        <th>Sr. No</th>
+        <th>Dr. Name</th>
+        <th>Specialty</th>
+        <th>SSM Name</th>
+        <th>EMG Reading</th>
+        <th>Region</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const TEN_DAYS_MS = 10 * 24 * 60 * 60 * 1000;
+    const now = Date.now();
+
+    let entries = JSON.parse(localStorage.getItem("emgEntries")) || [];
+
+    // Filter out entries older than 10 days
+    entries = entries.filter(entry => now - entry.timestamp <= TEN_DAYS_MS);
+
+    // Optional: clean localStorage
+    localStorage.setItem("emgEntries", JSON.stringify(entries));
+
+    const regionFilter = document.getElementById("regionFilter");
+    const tbody = document.querySelector("#scoreboard tbody");
+
+    regionFilter.addEventListener("change", () => {
+      const selectedRegion = regionFilter.value;
+      tbody.innerHTML = "";
+
+      const filtered = entries
+        .filter(entry => entry.region === selectedRegion)
+        .sort((a, b) => b.emgReading - a.emgReading); // Descending
+
+      filtered.forEach((entry, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${entry.drName}</td>
+          <td>${entry.specialty}</td>
+          <td>${entry.ssm}</td>
+          <td>${entry.emgReading}</td>
+          <td>${entry.region}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>
